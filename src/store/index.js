@@ -6,7 +6,32 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    reworks: [],
+    reworks: [
+      {
+        reworked_on: "6/10/2019",
+        orderNumber: "497101",
+        lineItemNumber: 2,
+        reason: 6,
+        status: 20,
+        tech: "heather@signs.com"
+      },
+      {
+        reworked_on: "4/26/2019",
+        orderNumber: "499361",
+        lineItemNumber: 1,
+        reason: 12,
+        status: 6,
+        tech: "svincent@signs.com"
+      },
+      {
+        reworked_on: "4/7/2019",
+        orderNumber: "497746",
+        lineItemNumber: 3,
+        reason: 6,
+        status: 10,
+        tech: "heather@signs.com"
+      }
+    ],
     status: [
       { id: 1, name: "New" },
       { id: 2, name: "Pre-Press" },
@@ -38,17 +63,17 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-    fetchReworks(state, newReworks) {
+    fetchReworksMutation(state, newReworks) {
       state.reworks = newReworks;
     }
   },
   actions: {
-    async fetchReworks({ commit }) {
+    async fetchReworksAction({ commit }) {
       return new Promise((res, rej) => {
         rework
           .fetchReworks()
           .then(response => {
-            commit("fetchReworks", response.data);
+            commit("fetchReworksMutation", response.data);
             res(response);
           })
           .catch(error => {
